@@ -20,7 +20,6 @@
             color: #f0c94c;
         }
 
-        /* Overlay para oscurecer el fondo */
         body::before {
             content: "";
             position: absolute;
@@ -169,7 +168,6 @@
         </div>
     </div>
 
-    <!-- Lógica JS se mantiene tal como está -->
     <script>
         const platillosPorRestaurante = {
             "Restaurante A": ["Tacos al Pastor", "Quesadillas", "Pozole", "Tamales", "Chilaquiles"],
