@@ -1,5 +1,5 @@
 [phases.build]
-cmds = ["composer install", "npm run build", "chmod -R 775 storage bootstrap/cache"]
+cmds = ["composer install", "npm run build", "chmod -R 775 storage bootstrap/cache", "touch /app/database/database.sqlite"]
 
 [phases.deploy]
-cmds = ["touch /tmp/database.sqlite", "php artisan migrate --force"]
+cmds = ["php artisan migrate --force"]
