@@ -8,7 +8,7 @@
     <style>
         body {
             background-color: #000000;
-            color: #FFD700; /* Dorado */
+            color: #FFD700;
         }
         h1, h4 {
             color: #FFD700;
@@ -64,7 +64,7 @@
                     label: 'Satisfacción',
                     data: {!! json_encode(array_column($historial, 'calificacion')) !!},
                     fill: false,
-                    borderColor: '#FFD700', // dorado
+                    borderColor: '#FFD700',
                     tension: 0.1
                 }]
             },

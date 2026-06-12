@@ -32,7 +32,6 @@ class SimuladorController extends Controller
 
     public function mostrarMapa()
     {
-        // Si ya se completaron todos los días, redirige al reporte
         if (session('dia_actual') > session('dias_totales')) {
             return redirect()->route('reporte');
         }
@@ -60,7 +59,6 @@ class SimuladorController extends Controller
         session(['historial' => $historial]);
 session(['dia_actual' => session('dia_actual') + 1]);
 
-// Redirige al análisis UCB antes de volver al mapa
 return redirect()->route('resume');
 
     }
@@ -69,14 +67,12 @@ return redirect()->route('resume');
     {
         $historial = session('historial', []);
     
-        // Restaurante más visitado
         $restCount = [];
         foreach ($historial as $h) {
             $restCount[$h['restaurante']] = ($restCount[$h['restaurante']] ?? 0) + 1;
         }
         $restauranteFavorito = array_search(max($restCount), $restCount);
     
-        // Platillo favorito (mayor calificación promedio)
         $platillos = [];
         foreach ($historial as $h) {
             $platillos[$h['platillo']]['suma'] = ($platillos[$h['platillo']]['suma'] ?? 0) + $h['calificacion'];
@@ -135,13 +131,12 @@ public function siguienteDia()
     $dia = session('dia_actual', 1);
     $historial = session('historial', []);
 
-    $ucbs = $this->calcularUCB($historial); // Llamamos a la función que hicimos en el paso 1
+    $ucbs = $this->calcularUCB($historial); 
 
     $restaurante_recomendado = null;
     $mensaje_recomendacion = null;
 
     if (!empty($ucbs)) {
-        // Ordenamos los restaurantes por UCB (de mayor a menor)
         uasort($ucbs, fn($a, $b) => $b['ucb'] <=> $a['ucb']);
         $restaurante_recomendado = array_key_first($ucbs);
 
