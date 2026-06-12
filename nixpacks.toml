@@ -1,2 +1,2 @@
 [phases.build]
-cmds = ["composer install", "npm install", "npm run build"]
+cmds = ["composer install", "npm run build", "touch database/database.sqlite", "php artisan migrate --force", "chmod -R 775 storage bootstrap/cache"]
